@@ -1,4 +1,4 @@
-This sketch uses a DS1810 temperature sensor in conjunction with
+This sketch uses a DS18B10 temperature sensor in conjunction with
 a heating element and fountain pump to provide a precise water bath
 controller for C-41 and E-6 color film processing.
 
@@ -20,3 +20,102 @@ It currently supports:
 - "Emulsion mode" which keeps the water bath at 120F for making
   homebrew gelatin emulsions.
 
+------------------
+ EQUIPMENT NEEDED
+------------------
+
+- Arduino UNO or equivalent
+
+- SainSmart 1602 LCD Display
+
+- A suitably waterproofed DS18B10 temperature sensor such as 
+  this one from Sparkfun: https://www.sparkfun.com/products/11050
+  
+- 4.7K pullup resistor for the DS18B10
+
+- Relay rated for 5 amps or more at 120/240VAC depending
+  on your country.  I used one from my junk box, but the SainSmart
+  HL-52S should work.
+
+- 300W coffee cup heater (aka 'electric immersion heater') such as
+  this one from Amazon
+
+  https://www.amazon.com/Norpro-Instant-Electric-Immersion-Heater/dp/B01M0Q84BR
+  
+- Small submersible fountain pump, such as this one:
+
+  https://www.amazon.com/American-Pond-Fountain-2-4Watt-APJR150/dp/B00MKKWZVK/
+  
+
+------------------
+     WIRING
+------------------
+
+The SainSmart LCD is plugged in normally.
+
+The fountain pump is always ON; plug it into an AC outlet when
+using the water bath controller. If you're handy with AC wiring
+you can wire up a duplex outlet to have one always ON socket for
+the pump and connect the other socket to the heater element relay.
+
+Wiring the temperature sensor:
+
++5V ---------------> DS18B20 V+
+                        |
+                   4.7K resistor
+                        |
+Arduino pin 12 ----> DS18B20 DATA
+
+
+GND ---------------> DS18B20 GND
+
+
+Wiring the relay module:
+
+=5V ----------------> Relay module V+
+
+Arduino pin 13 -----> Relay module control pin
+
+GND ----------------> Relay module GND
+
+
+Wiring the heater element:
+
+RELAY_NC (normally closed)  Not connected
+RELAY_NO (normally open)    One wire of heater's AC cord
+RELAY_COMMON (contact arm)  AC hot wire
+
+Connect the AC neutral wire to the other wire of the heater's AC cord.
+
+
+------------------
+    OPERATING
+------------------
+
+WARNING: do NOT apply power to the Arduino until both the
+heating element and temperature sensor are immersed in
+the water bath!
+
+1. Fill up a shallow plastic tub with water.  This tub
+   should be large enough to hold your chemistry and
+   your film tank.  Chemistry should be pre-measured
+   and poured into Ziploc bags or pint jars.
+   
+2. Place the fountain pump in the water bath and turn it
+   on.  Position it so water circulates nicely around the
+   entire bath.
+   
+3. Place the heater in the water bath immediately in the
+   path of water coming out of the pump.
+   
+4. Place the temperature sensor in the water bath.
+
+5. Turn on the Arduino and select your film process and
+   push/pull stops.
+   
+6. Allow the water bath to come to temperature (it may take
+   15 minutes or so).  Once at process temp, allow another
+   15 minutes to ensure the chemistry is at the correct
+   temperature as well.
+   
+7. Process your film!
