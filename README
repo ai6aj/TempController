@@ -1,0 +1,22 @@
+This sketch uses a DS1810 temperature sensor in conjunction with
+a heating element and fountain pump to provide a precise water bath
+controller for C-41 and E-6 color film processing.
+
+Additionally, it drives a SainSmart 1602 LCD Display with Keypad
+to allow the user to select processing chemistry and act as a timer
+for the various steps involved (presoak, developer, blix, etc.)
+
+It currently supports:
+
+- Unicolor C-41 powder kit at 96F.  This is a lower temperature
+  than usual to allow a color developer time greater than
+  5 minutes (times under 5 minutes can cause unevenness in tank
+  processing).
+
+- Tetenal E-6 liquid kit at standard temps and times.
+
+- Partial support for B&W
+
+- "Emulsion mode" which keeps the water bath at 120F for making
+  homebrew gelatin emulsions.
+
